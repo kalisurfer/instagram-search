@@ -1,0 +1,60 @@
+<head>
+  <title>Particle Instagram Grabber</title>
+  <script type="text/javascript">
+    $(window).scroll(function() {
+       if($(window).scrollTop() + $(window).height() == $(document).height()) {
+           console.log("bottom!");
+           fetchMorePhotos();
+       }
+    });
+  </script>
+</head>
+
+<body>
+  {{> hello}}
+  <div class="makeitrain">
+  	{{> gridOfImages}}
+
+  </div>
+</body>
+
+<template name="hello">
+  <div class="announcement">
+    <div style="hero-unit">
+      <h1>Search Instagram for the #tag </h1>
+      <p class="lead">{{appExplanation}}</p>
+     
+    </div>
+  
+
+    <div class="tabbable">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab1" data-toggle="tab">Search</a></li>
+        <li><a href="#tab2" data-toggle="tab">Stream</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+           <form name="context" class=".form-inline">
+            <input type="text" id="q" placeholder="Enter your hashtag" />
+            <input type="button" value="Search" class="btn" id="Search" onClick="handleClick(this.id)" />
+          </form>
+        </div>
+        <div class="tab-pane" id="tab2">
+          <form name="context" class=".form-inline">
+            <input type="button" value="Connect to Account" class="btn" id="Account" onClick="handleClick(this.id)" />
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</template>
+
+<template name="gridOfImages">
+	<ul>
+		{{#each photos}}
+		<li><img src="{{thumb}}" title="this photo got {{likes}} likes" class="img-polaroid" /></li>
+		{{/each}}
+	</ul>
+</template>
+
